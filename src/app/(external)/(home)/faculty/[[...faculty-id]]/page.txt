@@ -1,0 +1,161 @@
+"use client";
+
+import React from "react";
+
+import Image from "next/image";
+
+import { Bookmark } from "lucide-react";
+import { motion } from "motion/react";
+
+import FacultyImage from "@/assets/sir.jpg";
+
+export default function FacultyDrtails() {
+  return (
+    <div className="container mx-auto h-screen max-w-7xl border border-t-0 border-b-0 border-dotted">
+      <div className="px-8 pt-12">
+        <div>
+          <h1 className="text-base font-medium">Reviews</h1>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3">
+          {/* Facuty name and image */}
+          <div className="flex items-center gap-4">
+            <Image src={FacultyImage} alt="Faculty Image" width={120} height={120} className="rounded-full" />
+            <div className="flex flex-col gap-2">
+              <h1 className="inline-flex items-center text-2xl font-semibold">
+                MD. TANZEEM RAHAT
+                <span className="ml-2">
+                  <Bookmark />
+                </span>
+              </h1>
+              <p className="text-muted-foreground text-sm">
+                Professor in the <span className="font-semibold">Depatment of Computer Science</span> <br></br> at {""}
+                <span className="underline underline-offset-2">American International University-Bangladesh</span>
+              </p>
+            </div>
+          </div>
+          {/* Reviews */}
+          <div>
+            <p className="text-muted-foreground text-sm">Overall Quality</p>
+            <p className="text-6xl">
+              4.6<span className="text-muted-foreground text-2xl font-normal">/5</span>
+            </p>
+            <p className="text-muted-foreground">
+              Based on <span className="underline">120 reviews</span>
+            </p>
+          </div>
+
+          {/* Reviews count  */}
+
+          <div className="mt-6 flex flex-col gap-2">
+            {[
+              { rating: 5, count: "2.0k", percentage: 85, color: "bg-emerald-500" },
+              { rating: 4, count: "1.0k", percentage: 65, color: "bg-emerald-400" },
+              { rating: 3, count: "500", percentage: 40, color: "bg-amber-400" },
+              { rating: 2, count: "200", percentage: 20, color: "bg-sky-400" },
+              { rating: 1, count: "0k", percentage: 5, color: "bg-orange-400" },
+            ].map((item, index) => (
+              <div key={item.rating} className="flex items-center gap-3">
+                <span className="text-muted-foreground w-4 text-sm"> {item.rating}</span>
+                <div className="h-2 w-32 overflow-hidden rounded-full bg-gray-200">
+                  <motion.div
+                    className={`h-full ${item.color}`}
+                    initial={{ width: 0 }}
+                    animate={{ width: `${item.percentage}%` }}
+                    transition={{
+                      duration: 0.8,
+                      delay: index * 0.1,
+                      ease: "easeOut",
+                    }}
+                  />
+                </div>
+                <span className="text-muted-foreground w-10 text-right text-sm">{item.count}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+
+<div className="container mx-auto h-fit max-w-4xl border border-t-0 border-b-0 border-dotted">
+        <div className="mx-2 border border-t-0 border-r border-l border-dotted">
+          <div className="px-4 py-2">
+            <div className="text-muted-foreground flex justify-between text-xs">
+              <p className="font-semibold">DSA101</p>
+              <p>April 7th, 2024</p>
+            </div>
+            <div className="pt-8">
+              <div className="flex flex-col gap-1 md:flex-row md:gap-4">
+                <p className="text-muted-foreground text-[14px]">
+                  For Credit: <span className="text-primary">Yes</span>
+                </p>
+                <p className="text-muted-foreground text-[14px]">
+                  Attendance: <span className="text-primary">Mandatory</span>
+                </p>
+                <p className="text-muted-foreground text-[14px]">
+                  Would Take Again: <span className="text-primary">Yes</span>
+                </p>
+                <p className="text-muted-foreground text-[14px]">
+                  Grade: <span className="text-primary">A</span>
+                </p>
+                <p className="text-muted-foreground text-[14px]">
+                  Textbook: <span className="text-primary">No</span>
+                </p>
+              </div>
+              <div className="pt-4">
+                <p className="text-justify text-[14px]">
+                  Bro Ritchie is a cool guy. Hes an older brother who retired in his mid 30s. Hes served a lot of
+                  missions and gives back. In this class he goes over the material from Launching Leaders. Its really
+                  life changing information if you actually live by it. Cool guy and cool class. Id recommend it to all.
+                </p>
+              </div>
+            </div>
+            <div className="flex w-full flex-wrap gap-2 pt-2">
+              <Badge variant="secondary">Get ready to read</Badge>
+              <Badge variant="secondary">Inspirational</Badge>
+            </div>
+          </div>
+        </div>
+        <div className="h-4 border border-dotted"></div>
+        <div className="mx-2 border border-t-0 border-r border-b border-l border-dotted">
+          <div className="px-4 py-2">
+            <div className="text-muted-foreground flex justify-between text-xs">
+              <p className="font-semibold">DSA101</p>
+              <p>April 7th, 2024</p>
+            </div>
+            <div className="pt-8">
+              <div className="flex flex-col gap-1 md:flex-row md:gap-4">
+                <p className="text-muted-foreground text-[14px]">
+                  For Credit: <span className="text-primary">Yes</span>
+                </p>
+                <p className="text-muted-foreground text-[14px]">
+                  Attendance: <span className="text-primary">Mandatory</span>
+                </p>
+                <p className="text-muted-foreground text-[14px]">
+                  Would Take Again: <span className="text-primary">Yes</span>
+                </p>
+                <p className="text-muted-foreground text-[14px]">
+                  Grade: <span className="text-primary">A</span>
+                </p>
+                <p className="text-muted-foreground text-[14px]">
+                  Textbook: <span className="text-primary">No</span>
+                </p>
+              </div>
+              <div className="pt-4">
+                <p className="text-justify text-[14px]">
+                  Bro Ritchie is a cool guy. Hes an older brother who retired in his mid 30s. Hes information if you
+                  actually live by it. Cool guy and cool class. Id recommend it to all.
+                </p>
+              </div>
+            </div>
+            <div className="flex w-full flex-wrap gap-2 pt-2">
+              <Badge variant="secondary">Get ready to read</Badge>
+              <Badge variant="secondary">Inspirational</Badge>
+            </div>
+          </div>
+        </div>
+        {/* <div className="relative left-1/2 w-screen -translate-x-1/2 border-t border-dotted"></div> */}
+      </div>
