@@ -44,18 +44,6 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --animate-shiny-text: shiny-text 8s infinite;
-  @keyframes shiny-text {
-    0%,
-    90%,
-    100% {
-      background-position: calc(-100% - var(--shiny-width)) 0;
-    }
-    30%,
-    60% {
-      background-position: calc(100% + var(--shiny-width)) 0;
-    }
-  }
 }
 
 /* Default theme styles (used when no data-theme-preset is set or when 'default' is selected).
@@ -179,4 +167,77 @@ html {
 
 .disable-transitions * {
   transition: none !important;
+}
+
+.b-border {
+  position: relative;
+}
+.b-border::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1px dotted var(--border);
+  mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+  pointer-events: none;
+}
+.t-border {
+  position: relative;
+}
+.t-border::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1px dotted var(--border);
+  mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+  pointer-events: none;
+}
+
+.l-border {
+  position: relative;
+}
+.l-border::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  border-left: 1px dotted var(--border);
+  mask-image: linear-gradient(to bottom, transparent, white 15%, white 85%, transparent);
+  pointer-events: none;
+}
+
+.r-border {
+  position: relative;
+}
+.r-border::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  border-right: 1px dotted var(--border);
+  mask-image: linear-gradient(to bottom, transparent, white 15%, white 85%, transparent);
+  pointer-events: none;
+}
+
+.border-top {
+  border-top: 1px dotted var(--border);
+}
+
+.border-bottom {
+  border-bottom: 1px dotted var(--border);
+}
+.border-left {
+  border-left: 1px dotted var(--border);
+}
+.border-right {
+  border-right: 1px dotted var(--border);
 }

@@ -1,17 +1,21 @@
+import React from "react";
+
 import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   return (
-    <header className="bg-background/80 sticky top-0 z-50 border-b border-dotted py-3.5 backdrop-blur-md">
-      <nav className="container mx-auto flex max-w-7xl items-center justify-between">
-        <div>
-          <p>Rate my Professor</p>
+    <div className="border border-t-0 border-r-0 border-b border-l-0 border-dotted">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
+        <div>Rate my Professor</div>
+        <div className="flex gap-2">
+          <Button size="sm" className="sm:size-default">
+            Login
+          </Button>
+          <Button size="sm" className="sm:size-default">
+            Sign Up
+          </Button>
         </div>
-        <div className="flex items-center justify-between gap-1.5">
-          <Button variant="outline">Login</Button>
-          <Button>Let&apos;s Start</Button>
-        </div>
-      </nav>
-    </header>
+      </div>
+    </div>
   );
 }

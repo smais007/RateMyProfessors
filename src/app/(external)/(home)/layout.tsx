@@ -1,14 +1,12 @@
-import { ReactNode } from "react";
-
-import Footer from "./_components/footer";
 import Navbar from "./_components/navbar";
 
-export default async function HomeLayout({ children }: Readonly<{ children: ReactNode }>) {
+export default function HomeLayout({ children }: { children: React.ReactNode }) {
   return (
     <main>
-      <Navbar />
-      {children}
-      <Footer />
+      <div className="">
+        <Navbar />
+        {children}
+      </div>
     </main>
   );
 }
