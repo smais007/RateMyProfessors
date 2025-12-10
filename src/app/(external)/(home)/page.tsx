@@ -1,4 +1,4 @@
-import CrossBorder from "./_components/cross-border";
+import AnimatedBorder from "./_components/animated-border";
 import Hero from "./_components/hero";
 
 export default function Home() {

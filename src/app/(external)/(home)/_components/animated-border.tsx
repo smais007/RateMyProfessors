@@ -1,26 +1,26 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-import { motion, useInView } from "motion/react";
+import { motion } from "motion/react";
 
 import { cn } from "@/lib/utils";
 
 interface BorderLineProps {
   isTop: boolean;
-  isInView: boolean;
+  shouldAnimate: boolean;
   glowColor: string;
   duration: number;
 }
 
-function BorderLine({ isTop, isInView, glowColor, duration }: BorderLineProps) {
+function BorderLine({ isTop, shouldAnimate, glowColor, duration }: BorderLineProps) {
   return (
     <div className={cn("absolute right-0 left-0 h-px overflow-hidden", isTop ? "top-0" : "bottom-0")}>
       {/* Base dotted border */}
       <div className="absolute inset-0 border-t border-dotted" />
 
       {/* Animated glow that moves from center to edges */}
-      {isInView && (
+      {shouldAnimate && (
         <>
           {/* Left glow - small dot moving from center to left edge */}
           <motion.div
@@ -93,15 +93,46 @@ export default function AnimatedBorder({
   position = "top",
 }: AnimatedBorderProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  const hasTriggeredRef = useRef(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || hasTriggeredRef.current) return;
+
+    let hasScrolled = false;
+
+    const checkAndAnimate = () => {
+      if (hasTriggeredRef.current) return;
+
+      const rect = element.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
+
+      if (isVisible && hasScrolled) {
+        hasTriggeredRef.current = true;
+        setShouldAnimate(true);
+      }
+    };
+
+    const handleScroll = () => {
+      hasScrolled = true;
+      checkAndAnimate();
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div ref={ref} className={cn("relative", className)}>
       {(position === "top" || position === "both") && (
-        <BorderLine isTop={true} isInView={isInView} glowColor={glowColor} duration={duration} />
+        <BorderLine isTop={true} shouldAnimate={shouldAnimate} glowColor={glowColor} duration={duration} />
       )}
       {(position === "bottom" || position === "both") && (
-        <BorderLine isTop={false} isInView={isInView} glowColor={glowColor} duration={duration} />
+        <BorderLine isTop={false} shouldAnimate={shouldAnimate} glowColor={glowColor} duration={duration} />
       )}
       {children}
     </div>
